@@ -8,7 +8,7 @@ set(CMAKE_STATIC_LIBRARY_PREFIX)
 include_directories(include)
 
 # Third party
-include(../Shared.cmake)
+include(Shared.cmake)
 
 install_from_repo(https://github.com/glfw/glfw.git GLFW master TRUE /include/)
 
