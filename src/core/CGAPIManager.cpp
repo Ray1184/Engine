@@ -4,7 +4,7 @@
 
 #include <core/CGAPIManager.h>
 
-CGAPIManager& hpms::CGAPIManager::Instance()
+hpms::CGAPIManager& hpms::CGAPIManager::Instance()
 {
     static CGAPIManager inst;
     return inst;
