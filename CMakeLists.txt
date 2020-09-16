@@ -5,6 +5,12 @@ project(HPMSEngine)
 set(CMAKE_SHARED_LIBRARY_PREFIX)
 set(CMAKE_STATIC_LIBRARY_PREFIX)
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug"))
+  set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Debug Postfix for lib, samples and tools")
+else()
+  set(CMAKE_DEBUG_POSTFIX "" CACHE STRING "Debug Postfix for lib, samples and tools")
+endif()
+
 include_directories(include)
 
 # Third party
