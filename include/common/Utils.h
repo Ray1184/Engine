@@ -37,11 +37,7 @@ namespace hpms
     {
         std::unordered_map<std::string, int> allocMap;
 
-        inline static AllocCounter& Instance()
-        {
-            static AllocCounter inst;
-            return inst;
-        }
+        static AllocCounter& Instance();
     };
 
 
@@ -54,12 +50,7 @@ namespace hpms
 
         void Load(const std::string& path);
 
-        inline static ConfigManager& Instance()
-        {
-            static ConfigManager inst;
-            inst.Load(CONFIG_FILE);
-            return inst;
-        }
+        inline static ConfigManager& Instance();
     };
 
 

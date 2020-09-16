@@ -85,3 +85,9 @@ hpms::AdvModelItem* hpms::ResourceItemsCache::GetModel(const std::string& name)
 
     return modelsCache[name];
 }
+
+hpms::ResourceItemsCache& hpms::ResourceItemsCache::Instance()
+{
+    static ResourceItemsCache inst;
+    return inst;
+}

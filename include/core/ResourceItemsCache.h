@@ -45,11 +45,7 @@ namespace hpms
 
 
     public:
-        inline static ResourceItemsCache& Instance()
-        {
-            static ResourceItemsCache inst;
-            return inst;
-        }
+        static ResourceItemsCache& Instance();
 
         Texture* GetTexture(const std::string& name);
 

@@ -35,11 +35,7 @@ namespace hpms
         }
 
     public:
-        inline static LogicItemsCache& Instance()
-        {
-            static LogicItemsCache inst;
-            return inst;
-        }
+        static LogicItemsCache& Instance();
 
         RoomModelItem* GetRoomMap(const std::string& name);
 

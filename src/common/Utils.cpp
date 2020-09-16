@@ -148,3 +148,15 @@ void hpms::ConfigManager::Load(const std::string& path)
 
 }
 
+hpms::ConfigManager& hpms::ConfigManager::Instance()
+{
+    static ConfigManager inst;
+    inst.Load(CONFIG_FILE);
+    return inst;
+}
+
+hpms::AllocCounter& hpms::AllocCounter::Instance()
+{
+    static AllocCounter inst;
+    return inst;
+}

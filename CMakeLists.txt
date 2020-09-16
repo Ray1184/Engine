@@ -47,7 +47,8 @@ set(SOURCES
         src/logic/CalcUtils.cpp
         src/logic/items/Collisor.cpp
         src/logic/LogicItemsCache.cpp
-        src/logic/SectorUtils.cpp)
+        src/logic/SectorUtils.cpp
+        src/core/CGAPIManager.cpp)
 
 add_definitions(-DSTB_IMAGE_IMPLEMENTATION -DSTB_IMAGE_STATIC -DGLM_ENABLE_EXPERIMENTAL)
 

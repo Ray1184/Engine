@@ -54,3 +54,9 @@ hpms::RoomModelItem* hpms::LogicItemsCache::GetRoomMap(const std::string& name)
 
     return mapCache[name];
 }
+
+hpms::LogicItemsCache& hpms::LogicItemsCache::Instance()
+{
+    static LogicItemsCache inst;
+    return inst;
+}

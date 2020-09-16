@@ -21,11 +21,7 @@ namespace hpms
     {
     public:
 
-        inline static CGAPIManager& Instance()
-        {
-            static CGAPIManager inst;
-            return inst;
-        }
+        static CGAPIManager& Instance();
 
         inline Window* CreateNewWindow(const std::string& title, const unsigned int width, const unsigned int height,
                                     const bool vSync, const Options& options, const Perspective& perspective) {
