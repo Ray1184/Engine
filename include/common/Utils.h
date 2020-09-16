@@ -50,7 +50,7 @@ namespace hpms
 
         void Load(const std::string& path);
 
-        inline static ConfigManager& Instance();
+        static ConfigManager& Instance();
     };
 
 
