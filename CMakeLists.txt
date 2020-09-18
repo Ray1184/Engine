@@ -51,7 +51,6 @@ set(SOURCES
         src/core/Scene.cpp
         src/core/techniques/R25DPipeline.cpp
         src/logic/CalcUtils.cpp
-        src/logic/items/Collisor.cpp
         src/logic/LogicItemsCache.cpp
         src/logic/SectorUtils.cpp
         src/core/CGAPIManager.cpp)
