@@ -81,7 +81,9 @@ void hpms::PipelineUtils::RenderScene(Scene* scene, Window* window, Camera* came
     glm::mat4 projMatrix = window->GetProjMatrix();
 
     scene3DShader->SetUniform(UNIFORM_PROJMATRIX, projMatrix);
-    scene3DShader->SetUniform(UNIFORM_DIFFUSEINTENSITY, gui ? 1.0f : 0.1f);
+    float guiDiffuseIntensity = hpms::GetConfF("GUI_DIFFUSE_INTENSITY", 1.0f);
+    float sceneDiffuseIntensity = hpms::GetConfF("scene_DIFFUSE_INTENSITY", 0.5f);
+    scene3DShader->SetUniform(UNIFORM_DIFFUSEINTENSITY, gui ? guiDiffuseIntensity : sceneDiffuseIntensity);
     scene3DShader->SetUniform(UNIFORM_AMBIENTLIGHT, scene->GetAmbientLight());
 
     renderer->ModelsDraw(scene->GetItemsMap(), scene3DShader, camera, window, RenderCallback);
