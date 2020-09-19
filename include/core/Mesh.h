@@ -28,6 +28,7 @@ namespace hpms
         std::vector<float> weights;
         float boundingRadious;
         unsigned int textured; // Type bool cannot be serialized, use uint instead.
+        unsigned int animated; // Type bool cannot be serialized, use uint instead.
         Material material;
         std::string name;
         unsigned int vertexCount;
@@ -46,6 +47,7 @@ namespace hpms
                 PODS_OPT(jointIndices),
                 PODS_OPT(weights),
                 PODS_OPT(textured),
+                PODS_OPT(animated),
                 PODS_OPT(material),
                 PODS_OPT(name),
                 PODS_OPT(vertexCount),
@@ -131,6 +133,16 @@ namespace hpms
         inline void SetTextured(bool textured)
         {
             Mesh::textured = textured;
+        }
+
+        inline bool IsAnimated() const
+        {
+            return animated;
+        }
+
+        inline void SetAnimated(bool animated)
+        {
+            Mesh::animated = animated;
         }
 
         inline const Material& GetMaterial() const

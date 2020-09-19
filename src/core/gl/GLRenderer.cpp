@@ -70,21 +70,27 @@ void hpms::GLRenderer::MeshInit(const hpms::Mesh& mesh)
                  mesh.GetNormals().data(), GL_STATIC_DRAW);
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
 
-    // Weights.
-    glGenBuffers(1, &vbo);
-    vbosMap[mesh.GetKey()].push_back(vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, mesh.GetWeights().size() * sizeof(float),
-                 mesh.GetWeights().data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+    // Animation data (only for animated meshes).
+    if (mesh.IsAnimated())
+    {
 
-    // Joints.
-    glGenBuffers(1, &vbo);
-    vbosMap[mesh.GetKey()].push_back(vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, mesh.GetJointIndices().size() * sizeof(unsigned int),
-                 mesh.GetJointIndices().data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+        // Weights.
+        glGenBuffers(1, &vbo);
+        vbosMap[mesh.GetKey()].push_back(vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, mesh.GetWeights().size() * sizeof(float),
+                     mesh.GetWeights().data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+        // Joints.
+        glGenBuffers(1, &vbo);
+        vbosMap[mesh.GetKey()].push_back(vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, mesh.GetJointIndices().size() * sizeof(unsigned int),
+                     mesh.GetJointIndices().data(), GL_STATIC_DRAW);
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+    }
 
     // Indices.
     glGenBuffers(1, &vbo);
