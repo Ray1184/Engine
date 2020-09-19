@@ -121,6 +121,8 @@ hpms::GLRenderer::ModelsDraw(const std::unordered_map<const AdvModelItem*, std::
         for (const Mesh& mesh : item->GetMeshes())
         {
 
+            s->SetUniform(UNIFORM_ANIMATED, mesh.IsAnimated());
+
             s->SetUniform(UNIFORM_MATERIAL, mesh.GetMaterial());
             if (mesh.IsTextured())
             {

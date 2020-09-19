@@ -21,6 +21,7 @@ hpms::Shader* hpms::PipelineUtils::Create3DSceneShader()
     sceneShader->CreateUniform(UNIFORM_AMBIENTLIGHT);
     sceneShader->CreateUniform(UNIFORM_JOINTSMATRIX);
     sceneShader->CreateUniform(UNIFORM_DIFFUSEINTENSITY);
+    sceneShader->CreateUniform(UNIFORM_ANIMATED);
     return sceneShader;
 }
 

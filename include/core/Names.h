@@ -43,6 +43,7 @@
 #define UNIFORM_X "u_X"
 #define UNIFORM_Y "u_Y"
 #define UNIFORM_GLOBALALPHA "u_GlobalAlpha"
+#define UNIFORM_ANIMATED "u_Animated"
 
 #define SHADER_FILE_PARTICLES_VERT SHADERS_FOLDER "Particles.vert"
 #define SHADER_FILE_PARTICLES_FRAG SHADERS_FOLDER "Particles.frag"
