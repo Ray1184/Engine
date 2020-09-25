@@ -16,7 +16,7 @@
 namespace hpms
 {
 
-    class SceneNode : public RenderObject, Actor
+    class SceneNode : public RenderObject, public Actor
     {
     public:
         explicit SceneNode(const std::string& pname) : name(pname),
