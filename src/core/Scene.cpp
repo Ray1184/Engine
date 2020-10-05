@@ -38,10 +38,18 @@ void hpms::Scene::AddRenderObject(hpms::RenderObject* obj)
             }
         } else if (pic->GetMode() == PictureMode::BACKGROUND)
         {
-            backPicture = pic;
+            if (std::find(backPictures.begin(), backPictures.end(), pic) == backPictures.end())
+            {
+                backPictures.push_back(pic);
+            }
+            currentBackPicture = pic;
         } else if (pic->GetMode() == PictureMode::DEPTH_MASK)
         {
-            depthPicture = pic;
+            if (std::find(depthPictures.begin(), depthPictures.end(), pic) == depthPictures.end())
+            {
+                depthPictures.push_back(pic);
+            }
+            currentDepthPicture = pic;
         }
     }
 

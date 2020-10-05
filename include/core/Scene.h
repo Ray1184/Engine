@@ -43,14 +43,24 @@ namespace hpms
             return forePictures;
         }
 
-        inline Picture* GetBackPicture() const
+        inline const std::vector<Picture*>& GetBackPictures() const
         {
-            return backPicture;
+            return backPictures;
         }
 
-        inline Picture* GetDepthPicture() const
+        inline const std::vector<Picture*>& GetDepthPictures() const
         {
-            return depthPicture;
+            return depthPictures;
+        }
+
+        inline Picture* GetCurrentBackPicture() const
+        {
+            return currentBackPicture;
+        }
+
+        inline Picture* GetCurrentDepthPicture() const
+        {
+            return currentDepthPicture;
         }
 
         inline const std::unordered_map<const AdvModelItem*, std::vector<Entity*>>& GetItemsMap() const
@@ -75,7 +85,8 @@ namespace hpms
 
         inline void UpdateNodes()
         {
-            for (SceneNode* node : nodes) {
+            for (SceneNode* node : nodes)
+            {
                 node->UpdateTree();
             }
         }
@@ -84,9 +95,11 @@ namespace hpms
 
         std::unordered_map<const hpms::AdvModelItem*, std::vector<hpms::Entity*>> itemsMap;
         std::vector<Picture*> forePictures;
+        std::vector<Picture*> backPictures;
+        std::vector<Picture*> depthPictures;
         std::vector<SceneNode*> nodes;
-        Picture* backPicture;
-        Picture* depthPicture;
+        Picture* currentBackPicture;
+        Picture* currentDepthPicture;
         glm::vec3 ambientLight;
         float alpha;
     };

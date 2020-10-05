@@ -13,7 +13,7 @@ void hpms::R25DPipeline::Init(Window* window, Scene* scene, Renderer* renderer, 
     depthShader = PipelineUtils::CreateDepthShader();
 
 
-    if (Picture* pic = scene->GetBackPicture())
+    for (Picture* pic : scene->GetBackPictures())
     {
         Texture* tex = ResourceItemsCache::Instance().GetTexture(pic->GetImagePath());
         if (tex)
@@ -22,7 +22,7 @@ void hpms::R25DPipeline::Init(Window* window, Scene* scene, Renderer* renderer, 
         }
     }
 
-    if (Picture* pic = scene->GetDepthPicture())
+    for (Picture* pic : scene->GetDepthPictures())
     {
         Texture* tex = ResourceItemsCache::Instance().GetTexture(pic->GetImagePath());
         if (tex)
@@ -105,7 +105,7 @@ void hpms::R25DPipeline::Cleanup(Scene* scene, Renderer* renderer, FrameBuffer* 
     // Cleanup is intended only for GPU resources (except shaders and FX), not for physical data.
     hpms::CGAPIManager::Instance().FreeShaders();
 
-    if (Picture* pic = scene->GetBackPicture())
+    if (Picture* pic = scene->GetCurrentBackPicture())
     {
         Texture* tex = ResourceItemsCache::Instance().GetTexture(pic->GetImagePath());
         if (tex)
@@ -114,7 +114,7 @@ void hpms::R25DPipeline::Cleanup(Scene* scene, Renderer* renderer, FrameBuffer* 
         }
     }
 
-    if (Picture* pic = scene->GetDepthPicture())
+    if (Picture* pic = scene->GetCurrentDepthPicture())
     {
         Texture* tex = ResourceItemsCache::Instance().GetTexture(pic->GetImagePath());
         if (tex)

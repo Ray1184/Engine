@@ -108,9 +108,9 @@ void hpms::PipelineUtils::RenderPictures(Scene* scene, Shader* pictureShader, Re
         }
     } else
     {
-        if (scene->GetBackPicture())
+        if (scene->GetCurrentBackPicture())
         {
-            renderer->QuadsDraw(scene->GetBackPicture()->GetImagePath());
+            renderer->QuadsDraw(scene->GetCurrentBackPicture()->GetImagePath());
         }
     }
     pictureShader->Unbind();
@@ -123,9 +123,9 @@ void hpms::PipelineUtils::RenderDepthMask(Scene* scene, Window* window, Shader* 
     depthShader->SetUniform(UNIFORM_PROJMATRIX, window->GetProjMatrix());
     depthShader->SetUniform(UNIFORM_ZNEAR, window->GetPerspective().zNear);
     depthShader->SetUniform(UNIFORM_ZFAR, window->GetPerspective().zFar);
-    if (scene->GetDepthPicture())
+    if (scene->GetCurrentDepthPicture())
     {
-        renderer->QuadsDraw(scene->GetDepthPicture()->GetImagePath());
+        renderer->QuadsDraw(scene->GetCurrentDepthPicture()->GetImagePath());
     }
     depthShader->Unbind();
 }
