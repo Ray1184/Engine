@@ -37,6 +37,19 @@ namespace hpms
 
         virtual void SetWorldTransform(const glm::mat4& worldTransform) = 0;
 
+        inline const std::string& GetObjName() const
+        {
+            return objName;
+        }
+
+        inline void SetObjName(const std::string& objName)
+        {
+            Actor::objName = objName;
+        }
+
+    private:
+        std::string objName;
+
 
     };
 }
