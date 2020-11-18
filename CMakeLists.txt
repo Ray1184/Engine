@@ -8,7 +8,7 @@ set(CMAKE_STATIC_LIBRARY_PREFIX)
 set(GLFW_VERSION 3.3.2)
 set(GLM_VERSION 0.9.9.8)
 set(PODS_VERSION master)
-set(PHYSFS_VERSION release-3.0.2)
+set(PHYSFS_VERSION master)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Debug Postfix for lib, samples and tools")
@@ -39,7 +39,7 @@ set(PHYSFS_ARCHIVE_ISO9660 OFF CACHE BOOL "Disable physfs ISO9660" FORCE)
 set(PHYSFS_ARCHIVE_VDF OFF CACHE BOOL "Disable physfs VDF" FORCE)
 set(PHYSFS_BUILD_TEST OFF CACHE BOOL "Disable physfs VDF" FORCE)
 
-install_from_repo(https://hg.icculus.org/icculus/physfs PHYSFS ${PHYSFS_VERSION} TRUE /src/)
+install_from_repo(https://github.com/criptych/physfs.git PHYSFS ${PHYSFS_VERSION} TRUE /src/)
 
 set(SOURCES
         src/thirdparty/glad/glad.c
