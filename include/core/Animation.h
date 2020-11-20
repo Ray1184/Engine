@@ -52,6 +52,11 @@ namespace hpms
 
         std::vector<FrameTransform> frameTransformations;
 
+        Frame()
+        {
+            frameTransformations.reserve(MAX_JOINTS);
+        }
+
         PODS_SERIALIZABLE(
                 1,
                 PODS_OPT(frameTransformations)
