@@ -7,19 +7,19 @@
 #include <glm/ext.hpp>
 #include <common/Utils.h>
 
-void hpms::InterpolationCalculator::Calculate(std::vector<Animation>& anims, int fromFrameIndex, int toFrameIndex, int iterations)
+void hpms::InterpolationCalculator::Calculate(std::vector<Animation>* anims, int fromFrameIndex, int toFrameIndex, int iterations)
 {
-    if (anims.empty())
+    if (anims->empty())
     {
         return;
     }
-    if (anims.size() == 1)
+    if (anims->size() == 1)
     {
-        anims.emplace_back();
+        anims->emplace_back();
     }
 
-    Animation& baseAnim = anims[0];
-    Animation& interpolationAnim = anims[1];
+    Animation baseAnim = anims->at(0);
+    Animation interpolationAnim = anims->at(1);
     std::vector<Frame> interpolatedFrames;
 
 

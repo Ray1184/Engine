@@ -43,6 +43,11 @@ namespace hpms
             return animations;
         }
 
+        inline std::vector<Animation>* GetAnimationsPtr()
+        {
+            return &animations;
+        }
+
         inline void SetAnimations(const std::vector<Animation>& animations)
         {
             AdvModelItem::animations = animations;
