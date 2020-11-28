@@ -40,6 +40,11 @@ namespace hpms
             key = std::string(buffer);
         }
 
+        virtual ~AdvModelItem()
+        {
+            hpms::SafeDelete(armatureNode);
+        }
+
         inline const std::vector<Animation>& GetAnimations() const
         {
             return animations;
