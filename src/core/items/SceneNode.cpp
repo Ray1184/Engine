@@ -2,7 +2,7 @@
  * File SceneNode.cpp
  */
 
-#include <core/items/SceneNode.h>
+#include <core/SceneNode.h>
 
 hpms::SceneNode* hpms::SceneNode::FindInTree(const std::string& name)
 {

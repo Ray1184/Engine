@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <core/StdModelItem.h>
 #include <core/Animation.h>
+#include <core/SceneNode.h>
 
 
 namespace hpms
@@ -17,6 +18,7 @@ namespace hpms
 
         std::string key;
         std::vector<Animation> animations;
+        SceneNode* armatureNode;
 
 
     public:
@@ -31,7 +33,7 @@ namespace hpms
         AdvModelItem(const std::string& key) : key(key)
         {}
 
-        AdvModelItem()
+        AdvModelItem() : armatureNode(armatureNode)
         {
             char buffer[32];
             hpms::RandomString(buffer, 32);
@@ -46,6 +48,16 @@ namespace hpms
         inline std::vector<Animation>* GetAnimationsPtr()
         {
             return &animations;
+        }
+
+        inline SceneNode* GetArmatureNode() const
+        {
+            return armatureNode;
+        }
+
+        inline void SetArmatureNode(SceneNode* armatureNode)
+        {
+            AdvModelItem::armatureNode = armatureNode;
         }
 
         inline void SetAnimations(const std::vector<Animation>& animations)
