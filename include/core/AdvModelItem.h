@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <core/StdModelItem.h>
 #include <core/Animation.h>
-#include <core/items/SceneNode.h>
 #include <core/AnimNode.h>
 
 
