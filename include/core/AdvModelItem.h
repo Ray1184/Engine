@@ -18,7 +18,7 @@ namespace hpms
 
         std::string key;
         std::vector<Animation> animations;
-        AnimNode* armatureNode;
+        AnimNode armatureNode;
 
 
     public:
@@ -35,17 +35,13 @@ namespace hpms
         AdvModelItem(const std::string& key) : key(key)
         {}
 
-        AdvModelItem() : armatureNode(armatureNode)
+        AdvModelItem()
         {
             char buffer[32];
             hpms::RandomString(buffer, 32);
             key = std::string(buffer);
         }
 
-        virtual ~AdvModelItem()
-        {
-            hpms::SafeDelete(armatureNode);
-        }
 
         inline const std::vector<Animation>& GetAnimations() const
         {
@@ -67,21 +63,21 @@ namespace hpms
             return &animations[index];
         }
 
-        inline AnimNode* GetArmatureNode() const
+        const AnimNode& GetArmatureNode() const
         {
             return armatureNode;
         }
 
-        inline void SetArmatureNode(AnimNode* armatureNode)
+        void SetArmatureNode(const AnimNode& armatureNode)
         {
             AdvModelItem::armatureNode = armatureNode;
         }
+
 
         inline const std::string Name() const override
         {
             return "AdvModelItem";
         }
-
 
 
     };

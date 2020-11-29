@@ -31,8 +31,7 @@ namespace hpms
                 1,
                 PODS_OPT(children),
                 PODS_OPT(transformations),
-                PODS_OPT(name),
-                PODS_OPT(*parent)
+                PODS_OPT(name)
         );
 
         AnimNode()
