@@ -10,7 +10,7 @@
 #include <glm/gtx/quaternion.hpp>
 #include <core/AdvModelItem.h>
 #include <core/items/Entity.h>
-#include <core/SceneNode.h>
+#include <core/items/SceneNode.h>
 
 
 namespace hpms

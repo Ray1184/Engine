@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include <c++/10.2.0/vector>
-#include <c++/10.2.0/string>
-#include "../../cmake-build-debug/_deps/glm-src/glm/glm.hpp"
+#include <vector>
+#include <string>
+#include <glm/glm.hpp>
 #include <core/Actor.h>
 #include <common/Utils.h>
 #include <core/RenderObject.h>

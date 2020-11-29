@@ -11,7 +11,6 @@
 #include <core/AdvModelItem.h>
 #include <core/RenderObject.h>
 #include <core/Names.h>
-#include <core/InterpolationCalculator.h>
 
 namespace hpms
 {
@@ -134,11 +133,6 @@ namespace hpms
         inline void SetAnimLoop(bool animLoop)
         {
             Entity::animLoop = animLoop;
-        }
-
-        inline void InterpolateAnimation(int fromFrameIndex, int toFrameIndex, int iterations)
-        {
-            hpms::InterpolationCalculator::Calculate(modelItem->GetAnimationsPtr(), fromFrameIndex, toFrameIndex, iterations);
         }
 
         inline unsigned int GetAnimCurrentIndex() const
