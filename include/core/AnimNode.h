@@ -11,6 +11,8 @@
 #include <glm/ext.hpp>
 #include <iostream>
 #include <common/Utils.h>
+#include <pods/pods.h>
+#include "Transform.h"
 
 
 namespace hpms
@@ -19,12 +21,18 @@ namespace hpms
     {
     private:
         std::vector<AnimNode*> children;
-        std::vector<glm::mat4> transformations;
+        std::vector<Transform> transformations;
         std::string name;
         AnimNode* parent;
 
     public:
 
+        PODS_SERIALIZABLE(
+                1,
+                PODS_OPT(children),
+                PODS_OPT(transformations),
+                PODS_OPT(name),
+                PODS_OPT(parent))
 
         AnimNode(std::string pname, AnimNode* pparent) : name(pname), parent(pparent)
         {
@@ -59,12 +67,12 @@ namespace hpms
             AnimNode::children = children;
         }
 
-        inline const std::vector<glm::mat4>& GetTransformations() const
+        inline const std::vector<Transform>& GetTransformations() const
         {
             return transformations;
         }
 
-        inline void SetTransformations(const std::vector<glm::mat4>& transformations)
+        inline void SetTransformations(const std::vector<Transform>& transformations)
         {
             AnimNode::transformations = transformations;
         }
@@ -89,46 +97,18 @@ namespace hpms
             AnimNode::parent = parent;
         }
 
-        inline const std::string Name() const override
+        inline const std::string Name() const
+
+        override
         {
             return "AnimNode";
         }
 
         static AnimNode* Find(const std::string& name, AnimNode* parent);
 
-        static unsigned int GetAnimationFrames(AnimNode* parent)
-        {
-            unsigned int numFrames = parent->GetTransformations().size();
-            for (AnimNode* child : parent->GetChildren())
-            {
-                unsigned int childFrames = GetAnimationFrames(child);
-                numFrames = std::max(numFrames, childFrames);
-            }
-            return numFrames;
-        }
+        static unsigned int GetAnimationFrames(AnimNode* parent);
 
-        static glm::mat4 GetParentTransforms(AnimNode* node, unsigned int framePos)
-        {
-            if (node == nullptr)
-            {
-                return glm::mat4(1.0);
+        static glm::mat4 GetParentTransforms(AnimNode* node, unsigned int framePos);
 
-            }
-            glm::mat4 parentTransform = GetParentTransforms(node->GetParent(), framePos);
-            std::vector<glm::mat4> transformations = node->GetTransformations();
-
-
-            glm::mat4 nodeTransform(1.0);
-            unsigned int transfSize = transformations.size();
-            if (framePos < transfSize)
-            {
-                nodeTransform = transformations.at(framePos);
-            } else if (transfSize > 0)
-            {
-                nodeTransform = transformations.at(transfSize - 1);
-            }
-            glm::mat4 res = parentTransform * nodeTransform;
-            return res;
-        }
     };
 }

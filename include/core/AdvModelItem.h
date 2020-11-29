@@ -26,7 +26,8 @@ namespace hpms
         PODS_SERIALIZABLE(
                 1,
                 PODS_OPT(meshes),
-                PODS_OPT(animations)
+                PODS_OPT(animations),
+                PODS_OPT(armatureNode)
 
         );
 
