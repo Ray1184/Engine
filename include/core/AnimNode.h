@@ -12,7 +12,7 @@
 #include <iostream>
 #include <common/Utils.h>
 #include <pods/pods.h>
-#include "Transform.h"
+#include <core/Transform.h>
 
 
 namespace hpms
@@ -20,7 +20,7 @@ namespace hpms
     class AnimNode : public HPMSObject
     {
     private:
-        std::vector<AnimNode*> children;
+        std::vector<AnimNode> children;
         std::vector<Transform> transformations;
         std::string name;
         AnimNode* parent;
@@ -32,37 +32,34 @@ namespace hpms
                 PODS_OPT(children),
                 PODS_OPT(transformations),
                 PODS_OPT(name),
-                PODS_OPT(parent))
+                PODS_OPT(*parent)
+        );
+
+        AnimNode()
+        {}
 
         AnimNode(std::string pname, AnimNode* pparent) : name(pname), parent(pparent)
         {
 
         }
 
-        ~AnimNode()
-        {
-            for (AnimNode* child : children)
-            {
-                hpms::SafeDelete(child);
-            }
-        }
 
         inline void AddTransform(const glm::mat4 mat)
         {
             transformations.push_back(mat);
         }
 
-        inline const std::vector<AnimNode*>& GetChildren() const
+        inline const std::vector<AnimNode>& GetChildren() const
         {
             return children;
         }
 
-        inline void AddChild(AnimNode* node)
+        inline void AddChild(const AnimNode& node)
         {
             children.push_back(node);
         }
 
-        inline void SetChildren(const std::vector<AnimNode*>& children)
+        inline void SetChildren(const std::vector<AnimNode>& children)
         {
             AnimNode::children = children;
         }
@@ -104,9 +101,9 @@ namespace hpms
             return "AnimNode";
         }
 
-        static AnimNode* Find(const std::string& name, AnimNode* parent);
+        static AnimNode Find(const std::string& name, const AnimNode& parent);
 
-        static unsigned int GetAnimationFrames(AnimNode* parent);
+        static unsigned int GetAnimationFrames(const AnimNode& parent);
 
         static glm::mat4 GetParentTransforms(AnimNode* node, unsigned int framePos);
 

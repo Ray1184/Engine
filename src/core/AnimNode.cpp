@@ -4,18 +4,18 @@
 
 #include <core/AnimNode.h>
 
-hpms::AnimNode* hpms::AnimNode::Find(const std::string& name, hpms::AnimNode* parent)
+hpms::AnimNode hpms::AnimNode::Find(const std::string& name, const hpms::AnimNode& parent)
 {
-    AnimNode* res = nullptr;
-    if (parent->GetName().compare(name) == 0)
+    AnimNode res("dummy", nullptr);
+    if (parent.GetName() == name)
     {
         res = parent;
     } else
     {
-        for (AnimNode* child : parent->GetChildren())
+        for (const AnimNode& child : parent.GetChildren())
         {
             res = Find(name, child);
-            if (res != nullptr)
+            if (res.name != "dummy")
             {
                 break;
             }
@@ -48,10 +48,10 @@ glm::mat4 hpms::AnimNode::GetParentTransforms(hpms::AnimNode* node, unsigned int
     return res;
 }
 
-unsigned int hpms::AnimNode::GetAnimationFrames(hpms::AnimNode* parent)
+unsigned int hpms::AnimNode::GetAnimationFrames(const hpms::AnimNode& parent)
 {
-    unsigned int numFrames = parent->GetTransformations().size();
-    for (AnimNode* child : parent->GetChildren())
+    unsigned int numFrames = parent.GetTransformations().size();
+    for (const AnimNode& child : parent.GetChildren())
     {
         unsigned int childFrames = GetAnimationFrames(child);
         numFrames = std::max(numFrames, childFrames);
