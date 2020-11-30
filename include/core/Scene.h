@@ -89,6 +89,10 @@ namespace hpms
             {
                 node->UpdateTree();
             }
+            for (auto entry : itemsMap)
+            {
+                entry.first->Update();
+            }
         }
 
     private:

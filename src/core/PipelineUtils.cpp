@@ -148,7 +148,7 @@ void hpms::PipelineUtils::RenderCallback(Entity* entity, Shader* shader, Camera*
         const Animation* anim = entity->GetModelItem()->GetAnimationWithIndex(
                 entity->GetAnimCurrentIndex());
         const Frame* frame = anim->GetFrameWithIndex(entity->GetAnimCurrentFrameIndex());
-        const glm::mat4* jointMatrices = &(frame->frameTransformations[0].matrix);
+        const glm::mat4* jointMatrices = &(frame->frameTransformations[0].jointMatrix);
         shader->SetUniform(UNIFORM_JOINTSMATRIX, frame->frameTransformations.size(), jointMatrices);
 
     }
