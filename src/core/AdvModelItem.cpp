@@ -23,7 +23,7 @@ void hpms::AdvModelItem::Update() const
 {
     for (auto& entry : animationNodes)
     {
-        int currentIndex = bonesIndexByName[entry.first];
+        int currentIndex = bonesIndexByName.at(entry.first);
         entry.second->SetWorldTransform(
                 animations[0].GetFrames()[currentFrameIndex].frameTransformations[currentIndex].jointMatrix);
         entry.second->UpdateTree(false);

@@ -11,7 +11,6 @@
 #include <common/Utils.h>
 #include <core/RenderObject.h>
 #include <core/Names.h>
-#include <core/Transformation.h>
 
 namespace hpms
 {
