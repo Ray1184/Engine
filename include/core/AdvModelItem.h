@@ -13,13 +13,22 @@
 
 namespace hpms
 {
+    struct ArmaturePart
+    {
+        std::string boneName;
+
+        PODS_SERIALIZABLE(
+                1,
+                PODS_OPT(boneName)
+        );
+    };
     class AdvModelItem : public StdModelItem
     {
     private:
 
         std::string key;
         std::vector<Animation> animations;
-        std::vector<std::string> boneNames;
+        std::vector<ArmaturePart> armatureParts;
         std::unordered_map<std::string, int> bonesIndexByName;
         std::unordered_map<std::string, hpms::SceneNode*> animationNodes;
         int currentFrameIndex;
@@ -32,7 +41,7 @@ namespace hpms
                 1,
                 PODS_OPT(meshes),
                 PODS_OPT(animations),
-                PODS_OPT(boneNames)
+                PODS_OPT(armatureParts)
 
         );
 
@@ -94,14 +103,14 @@ namespace hpms
             AdvModelItem::currentFrameIndex = currentFrameIndex;
         }
 
-        const std::vector<std::string>& GetBoneNames() const
+        const std::vector<ArmaturePart>& GetArmatureParts() const
         {
-            return boneNames;
+            return armatureParts;
         }
 
-        void SetBoneNames(const std::vector<std::string>& boneNames)
+        void SetBoneNames(const std::vector<ArmaturePart>& armatureParts)
         {
-            AdvModelItem::boneNames = boneNames;
+            AdvModelItem::armatureParts = armatureParts;
         }
 
         inline const std::string Name() const override

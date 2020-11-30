@@ -10,11 +10,11 @@ void hpms::AdvModelItem::Init()
     {
         initialized = true;
         unsigned int index = 0;
-        for (auto& boneName : boneNames)
+        for (auto& armaturePart : armatureParts)
         {
-            bonesIndexByName[boneName] = index++;
-            SceneNode* animNode = hpms::SafeNew<SceneNode>("ANIMNODE_" + boneName);
-            animationNodes[boneName] = animNode;
+            bonesIndexByName[armaturePart.boneName] = index++;
+            SceneNode* animNode = hpms::SafeNew<SceneNode>("ANIMNODE_" + armaturePart.boneName);
+            animationNodes[armaturePart.boneName] = animNode;
         }
     }
 }
