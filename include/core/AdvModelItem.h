@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <core/StdModelItem.h>
 #include <core/Animation.h>
-#include <core/AnimNode.h>
+#include <glm/mat4x4.hpp>
 
 
 namespace hpms
@@ -18,7 +18,7 @@ namespace hpms
 
         std::string key;
         std::vector<Animation> animations;
-        AnimNode armatureNode;
+        std::vector<std::string> boneNames;
 
 
     public:
@@ -26,8 +26,7 @@ namespace hpms
         PODS_SERIALIZABLE(
                 1,
                 PODS_OPT(meshes),
-                PODS_OPT(animations),
-                PODS_OPT(armatureNode)
+                PODS_OPT(animations)
 
         );
 
@@ -63,16 +62,16 @@ namespace hpms
             return &animations[index];
         }
 
-        const AnimNode& GetArmatureNode() const
+
+        const std::vector<std::string>& GetBoneNames() const
         {
-            return armatureNode;
+            return boneNames;
         }
 
-        void SetArmatureNode(const AnimNode& armatureNode)
+        void SetBoneNames(const std::vector<std::string>& boneNames)
         {
-            AdvModelItem::armatureNode = armatureNode;
+            AdvModelItem::boneNames = boneNames;
         }
-
 
         inline const std::string Name() const override
         {

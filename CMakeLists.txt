@@ -55,8 +55,7 @@ set(SOURCES
         src/core/ResourceItemsCache.cpp
         src/core/Scene.cpp
         src/core/techniques/R25DPipeline.cpp
-        src/core/CGAPIManager.cpp
-        src/core/AnimNode.cpp include/core/Transform.h)
+        src/core/CGAPIManager.cpp)
 
 add_definitions(-DSTB_IMAGE_IMPLEMENTATION -DSTB_IMAGE_STATIC -DGLM_ENABLE_EXPERIMENTAL)
 
