@@ -60,13 +60,14 @@ hpms::AdvModelItem* hpms::ResourceItemsCache::GetModel(const std::string& name)
             hpms::AdvModelItem* model = hpms::SafeNew<AdvModelItem>();
             pods::InputBuffer in(buffer, size);
             pods::BinaryDeserializer<decltype(in)> deserializer(in);
-            if (deserializer.load(*model) != pods::Error::NoError)
+            auto res = deserializer.load(*model);
+            if (res != pods::Error::NoError)
             {
                 std::stringstream ss;
                 ss << "Impossible to deserialize model stored in " << name;
                 LOG_ERROR(ss.str().c_str());
             }
-
+            model->Init();
             modelsCache[name] = model;
             hpms::SafeDeleteArray(buffer);
         } else
@@ -79,6 +80,7 @@ hpms::AdvModelItem* hpms::ResourceItemsCache::GetModel(const std::string& name)
         hpms::FileSystem::MountFS(DATA_ARCHIVE);
                 size_t size;
                 hpms::AdvModelItem* model = hpms::FileSystem::LoadBinResource<AdvModelItem>(name, &size);
+                model->Init();
                 modelsCache[name] = model;
 #endif
     }

@@ -156,10 +156,16 @@ namespace hpms
             Entity::localTransform = localTransform;
         }
 
+        inline SceneNode* GetAnimSceneNode(const std::string& boneId)
+        {
+            return modelItem->GetAnimNodeByBoneName(boneId);
+        }
 
         inline const std::string Name() const override
         {
             return "Entity";
         }
+
+
     };
 }
