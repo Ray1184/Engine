@@ -24,6 +24,7 @@ namespace hpms
         std::unordered_map<std::string, int> bonesIndexByName;
         std::unordered_map<std::string, hpms::SceneNode*> animationNodes;
         int currentFrameIndex;
+        int currentIndex;
         bool initialized;
 
 
@@ -39,10 +40,14 @@ namespace hpms
         );
 
 
-        AdvModelItem(const std::string& key) : key(key), initialized(false)
+        AdvModelItem(const std::string& key) : key(key), initialized(false),
+                                               currentIndex(0),
+                                               currentFrameIndex(0)
         {}
 
-        AdvModelItem() : initialized(false)
+        AdvModelItem() : initialized(false),
+                         currentIndex(0),
+                         currentFrameIndex(0)
         {
             char buffer[32];
             hpms::RandomString(buffer, 32);
@@ -94,6 +99,16 @@ namespace hpms
         inline void SetCurrentFrameIndex(int currentFrameIndex)
         {
             AdvModelItem::currentFrameIndex = currentFrameIndex;
+        }
+
+        inline int GetCurrenteIndex() const
+        {
+            return currentIndex;
+        }
+
+        inline void SetCurrentIndex(int currentIndex)
+        {
+            AdvModelItem::currentIndex = currentIndex;
         }
 
         const std::vector<std::string>& GetArmatureParts() const

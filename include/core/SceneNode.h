@@ -61,7 +61,7 @@ namespace hpms
             return parent;
         }
 
-        inline SceneNode* RemoveChild(const std::string& name);
+        SceneNode* RemoveChild(const std::string& name);
 
 
         inline Actor* GetActor() const
