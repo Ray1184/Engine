@@ -81,3 +81,21 @@ void hpms::SceneNode::UpdateTree(bool updateRoot)
         child->UpdateTree();
     }
 }
+
+hpms::SceneNode* hpms::SceneNode::RemoveChild(const std::string& name)
+{
+    SceneNode* node = FindInTree(parent->GetName());
+    if (node != nullptr)
+    {
+        unsigned int index = 0;
+        for (SceneNode* n : node->parent->children)
+        {
+            if (n->GetName() == name)
+            {
+                node->parent->children.erase(node->parent->children.begin() + index);
+            }
+            index++;
+        }
+    }
+    return node;
+}
