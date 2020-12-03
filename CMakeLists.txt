@@ -50,12 +50,13 @@ set(SOURCES
         src/core/gl/GLRenderer.cpp
         src/core/gl/GLShader.cpp
         src/core/gl/GLWindow.cpp
-        src/core/items/SceneNode.cpp
+        src/core/SceneNode.cpp
         src/core/PipelineUtils.cpp
         src/core/ResourceItemsCache.cpp
         src/core/Scene.cpp
         src/core/techniques/R25DPipeline.cpp
-        src/core/CGAPIManager.cpp)
+        src/core/CGAPIManager.cpp
+        src/core/AdvModelItem.cpp)
 
 add_definitions(-DSTB_IMAGE_IMPLEMENTATION -DSTB_IMAGE_STATIC -DGLM_ENABLE_EXPERIMENTAL)
 

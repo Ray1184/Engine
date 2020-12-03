@@ -11,7 +11,6 @@
 #include <common/Utils.h>
 #include <core/RenderObject.h>
 #include <core/Names.h>
-#include <core/Transformation.h>
 
 namespace hpms
 {
@@ -29,6 +28,7 @@ namespace hpms
                                                        rotation(glm::angleAxis(0.0f, glm::vec3(0.0f, 1.0f, 0.0f)))
         {}
 
+
         ~SceneNode()
         {
             for (SceneNode* child : children)
@@ -43,7 +43,12 @@ namespace hpms
             child->parent = this;
         }
 
-        void UpdateTree();
+        inline void UpdateTree()
+        {
+            UpdateTree(true);
+        }
+
+        void UpdateTree(bool updateRoot);
 
         SceneNode* FindInTree(const std::string& name);
 

@@ -2,7 +2,7 @@
  * File SceneNode.cpp
  */
 
-#include <core/items/SceneNode.h>
+#include <core/SceneNode.h>
 
 hpms::SceneNode* hpms::SceneNode::FindInTree(const std::string& name)
 {
@@ -54,26 +54,28 @@ void hpms::SceneNode::DeleteAllActors()
     }
 }
 
-void hpms::SceneNode::UpdateTree()
+void hpms::SceneNode::UpdateTree(bool updateRoot)
 {
-    const glm::mat4 rotMat = glm::toMat4(rotation);
-    const glm::mat4 transMat = glm::translate(glm::mat4(1.0f), position);
-    const glm::mat4 transScalMat = glm::scale(transMat, scale);
-    localTransform = transScalMat * rotMat;
+    if (updateRoot)
+    {
+        const glm::mat4 rotMat = glm::toMat4(rotation);
+        const glm::mat4 transMat = glm::translate(glm::mat4(1.0f), position);
+        const glm::mat4 transScalMat = glm::scale(transMat, scale);
+        localTransform = transScalMat * rotMat;
 
-    if (parent != nullptr)
-    {
-        worldTransform = parent->worldTransform * localTransform;
-    } else
-    {
-        worldTransform = localTransform;
+        if (parent != nullptr)
+        {
+            worldTransform = parent->worldTransform * localTransform;
+        } else
+        {
+            worldTransform = localTransform;
+        }
+
+        if (actor != nullptr)
+        {
+            actor->SetWorldTransform(worldTransform);
+        }
     }
-
-    if (actor != nullptr)
-    {
-        actor->SetWorldTransform(worldTransform);
-    }
-
     for (SceneNode* child : children)
     {
         child->UpdateTree();

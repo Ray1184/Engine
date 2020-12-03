@@ -8,17 +8,23 @@
 #include <core/StdModelItem.h>
 #include <core/Animation.h>
 #include <glm/mat4x4.hpp>
+#include <core/SceneNode.h>
 
 
 namespace hpms
 {
+
     class AdvModelItem : public StdModelItem
     {
     private:
 
         std::string key;
         std::vector<Animation> animations;
-        std::vector<std::string> boneNames;
+        std::vector<std::string> armatureParts;
+        std::unordered_map<std::string, int> bonesIndexByName;
+        std::unordered_map<std::string, hpms::SceneNode*> animationNodes;
+        int currentFrameIndex;
+        bool initialized;
 
 
     public:
@@ -26,21 +32,39 @@ namespace hpms
         PODS_SERIALIZABLE(
                 1,
                 PODS_OPT(meshes),
+                PODS_OPT(armatureParts),
                 PODS_OPT(animations)
+
 
         );
 
 
-        AdvModelItem(const std::string& key) : key(key)
+        AdvModelItem(const std::string& key) : key(key), initialized(false)
         {}
 
-        AdvModelItem()
+        AdvModelItem() : initialized(false)
         {
             char buffer[32];
             hpms::RandomString(buffer, 32);
             key = std::string(buffer);
         }
 
+        virtual ~AdvModelItem()
+        {
+            for (auto& entry : animationNodes)
+            {
+                hpms::SafeDelete(entry.second);
+            }
+        }
+
+        void Init();
+
+        void Update() const;
+
+        inline SceneNode* GetAnimNodeByBoneName(const std::string& boneName)
+        {
+            return animationNodes[boneName];
+        }
 
         inline const std::vector<Animation>& GetAnimations() const
         {
@@ -62,15 +86,24 @@ namespace hpms
             return &animations[index];
         }
 
-
-        const std::vector<std::string>& GetBoneNames() const
+        inline int GetCurrentFrameIndex() const
         {
-            return boneNames;
+            return currentFrameIndex;
         }
 
-        void SetBoneNames(const std::vector<std::string>& boneNames)
+        inline void SetCurrentFrameIndex(int currentFrameIndex)
         {
-            AdvModelItem::boneNames = boneNames;
+            AdvModelItem::currentFrameIndex = currentFrameIndex;
+        }
+
+        const std::vector<std::string>& GetArmatureParts() const
+        {
+            return armatureParts;
+        }
+
+        void SetBoneNames(const std::vector<std::string>& armatureParts)
+        {
+            AdvModelItem::armatureParts = armatureParts;
         }
 
         inline const std::string Name() const override

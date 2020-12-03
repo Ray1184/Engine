@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <core/AdvModelItem.h>
 #include <core/Mesh.h>
-#include <core/items/SceneNode.h>
+#include <core/SceneNode.h>
 #include <core/items/Entity.h>
 #include <core/items/Picture.h>
 
@@ -88,6 +88,10 @@ namespace hpms
             for (SceneNode* node : nodes)
             {
                 node->UpdateTree();
+            }
+            for (auto entry : itemsMap)
+            {
+                entry.first->Update();
             }
         }
 

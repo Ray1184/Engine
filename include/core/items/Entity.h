@@ -143,6 +143,7 @@ namespace hpms
         inline void SetAnimCurrentIndex(unsigned int animCurrentIndex)
         {
             Entity::animCurrentIndex = animCurrentIndex;
+            modelItem->SetCurrentFrameIndex(animCurrentIndex);
         }
 
         inline const glm::mat4& GetWorldTransform() const override
